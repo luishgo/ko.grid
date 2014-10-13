@@ -1,0 +1,22 @@
+<div class="pagination pagination-centered">
+    <ul id="ul-paginacao">
+        <li data-bind="css: {disabled: currentPageIndex() == 0}">
+            <a href="#" data-bind="click: function() { currentPageIndex() != 0 ? currentPageIndex(currentPageIndex() - 1) : 0; }">Anterior</a>
+        </li>
+        <!-- ko foreach: ko.utils.range(0, maxPageIndex) -->
+        <li class="li-pagina li-visible" data-bind="css: { active: $data == $parent.currentPageIndex() }">
+            <a href="#" data-bind="text: $data + 1, click: function() { $parent.currentPageIndex($data) }"></a>
+        </li>
+        <!-- /ko -->        
+        <li data-bind="css: {disabled: currentPageIndex() == maxPageIndex()}">
+            <a href="#" data-bind="click: function() { currentPageIndex() != maxPageIndex() ? currentPageIndex(currentPageIndex() + 1) : 0; }">Próximo</a>
+        </li>
+    </ul>
+    <div style="float: right; margin-right: 5px;">
+        Mostrando de 
+        <span id="registros-min" data-bind="text: (currentPageIndex()*pageSize())+1"/> a 
+        <span id="registros-max" data-bind="text: (currentPageIndex()*pageSize() + pageSize())" /> de 
+        <span id="filtrados-final"></span> 
+        <span id="total-registros" data-bind="text: dataSize()" /><span> registros</span>
+    </div>
+</div>

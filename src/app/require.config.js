@@ -4,7 +4,7 @@ var require = {
     paths: {
         "bootstrap":            "bower_modules/components-bootstrap/js/bootstrap.min",
         "hasher":               "bower_modules/hasher/dist/js/hasher.min",
-        "jquery":               "bower_modules/jquery/dist/jquery",
+        "jquery":               "bower_modules/jquery/jquery",
         "knockout":             "bower_modules/knockout/dist/knockout",
         "knockout-projections": "bower_modules/knockout-projections/dist/knockout-projections",
         "signals":              "bower_modules/js-signals/dist/signals.min",

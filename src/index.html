@@ -10,7 +10,13 @@
     <!-- endbuild -->
   </head>
   <body>
-    <grid params="dataLoader: dataLoader, pager: pager"></grid>
+    <filter params="pager: pager, 
+          columns: columns, 
+          includeToolbarRefresh: true,
+          includeToolbarDownload: false,
+          includeToolbarFilter: true,
+"></filter>
+    <grid params="dataLoader: dataLoader, pager: pager, columns: columns"></grid>
     <pager params="dataSize: pager.dataSize, pageSize: pager.pageSize, currentPageIndex: pager.currentPageIndex"></pager>
     <!-- build:js -->
       <script src="app/require.config.js"></script>

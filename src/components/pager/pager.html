@@ -14,9 +14,8 @@
     </ul>
     <div style="float: right; margin-right: 5px;">
         Mostrando de 
-        <span id="registros-min" data-bind="text: (currentPageIndex()*pageSize())+1"/> a 
-        <span id="registros-max" data-bind="text: (currentPageIndex()*pageSize() + pageSize())" /> de 
-        <span id="filtrados-final"></span> 
+        <span data-bind="text: minRows"/> a 
+        <span data-bind="text: maxRows" /> de 
         <span id="total-registros" data-bind="text: dataSize()" /><span> registros</span>
     </div>
 </div>

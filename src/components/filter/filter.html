@@ -1,0 +1,56 @@
+<div style="width: 600px; padding: 5px; margin: 5px; min-height: 30px;" class="well">
+  <div style="width: 100%;">
+    <div data-bind="if: includeToolbarRefresh" style="float: left; margin-right: 5px;">
+      <button id="toolbar-button-refresh" data-bind="click: $root.update" type="button" class="btn btn-mini" title="Atualizar">
+        <i class="icon-refresh"></i>
+      </button>
+    </div>
+    <div data-bind="if: includeToolbarDownload" style="float: left; margin-right: 5px;">
+      <a data-bind="attr: {href: downloadLinkXLS}">
+        <button id="toolbar-button-download" type="button" class="btn btn-mini" title="Download">
+          <i class="icon-download"></i>
+        </button>
+      </a>
+    </div>
+    <div data-bind="if: includeToolbarFilter" style="float: left; margin-right: 5px;">
+      <button id="toolbar-button-filter" data-bind="click: toggleConfigurationPanel" type="button" class="btn btn-mini" title="Filtro">
+        <i class="icon-filter"></i>
+      </button>
+    </div>
+    <div data-bind="if: includeToolbarPageSize, event: {change: pageSizeChange}" style="float: left; margin-right: 5px;">
+      <select data-bind="options: availablePageSizes, selectedOptions: selectedPageSize" style="width: 80px;  margin: 0px;"></select> registros por página
+    </div>
+  </div>
+  <!--ko if: configurationPanel -->
+  <p></p>
+  <div style="width: 100%;">
+    <fildset>
+      <legend>Filtro</legend>
+      <select id="toolbar-filter-column" data-bind="click: filterValue, options: notFilteredColumns(), optionsText: 'displayName', value: selectedColumn" style="margin: 0px;"></select>
+      <select id="toolbar-filter-operation" data-bind="options: conditionOperations" class="input-small" style="margin: 0px;"></select>
+      <input id="toolbar-filter-value" type="text" style="margin: 0px;">
+      <button id="toolbar-filter-button-add" data-bind="click: function(data, event){addCondition(selectedColumn, $('#toolbar-filter-operation').val(), $('#toolbar-filter-value').val());}" type="button" class="btn btn-mini" title="Adicionar condição">
+        <i class="icon-plus"></i>
+      </button>
+    </fildset>
+    <!--ko if: filteredColumns() != null -->
+    <p></p>
+    <table width="100%">
+      <tbody data-bind="foreach: filteredColumns()">
+        <tr>
+          <td data-bind="text: $index "></td>
+          <td data-bind="text: $data.displayName" width="36%"></td>
+          <td data-bind="text: $data.filterCondition().operation" width="16%"></td>
+          <td data-bind="text: $data.filterCondition().value" width="36%"></td>
+          <td>
+            <button id="toolbar-filter-button-remove" data-bind="click: function(data, event){removeCondition($data);}" type="button" class="btn btn-mini" title="Remover condição">
+              <i class="icon-minus"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/ko-->
+  </div>
+  <!--/ko-->
+</div>

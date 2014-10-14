@@ -1,13 +1,29 @@
-define(["knockout", "text!./grid.html"], function(ko, homeTemplate) {
+define(["knockout", "text!./grid.html"], function(ko, gridTemplate) {
 
-  function HomeViewModel(route) {
-    this.message = ko.observable('Welcome to ko.grid!');
+  var Grid = function(params) {
+    var self = this;
+    this.rows = ko.observableArray();
+    this.allSelected = ko.observable(false);
+    this.allSelected.subscribe(function(newValue) {
+        ko.utils.arrayForEach(this.rows(), function(row) {
+            row.selected(newValue);
+        });
+    }, this);
+    this.initializeRows = function(newRows) {
+      var rows = [];
+      ko.utils.arrayForEach(newRows, function(newRow) {
+          newRow.selected = ko.observable(false);
+          rows.push(newRow);
+      });
+      self.rows.removeAll();
+      self.rows(rows);
+    };
+    ko.computed(function() {
+      this.allSelected(false);
+      params.dataLoader(this.columns, this.pager, this.initializeRows);
+    }, this).extend({ throttle: 1 });
   }
 
-  HomeViewModel.prototype.doSomething = function() {
-    this.message('You invoked doSomething() on the viewmodel.');
-  };
-
-  return { viewModel: HomeViewModel, template: homeTemplate };
+  return { viewModel: Grid, template: gridTemplate };
 
 });

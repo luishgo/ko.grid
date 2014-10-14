@@ -10,9 +10,7 @@
     <!-- endbuild -->
   </head>
   <body>
-    <nav-bar params="route: route"></nav-bar>
-    <div id="page" class="container" data-bind="component: { name: route().page, params: route }"></div>
-    <div data-bind="component: { name: 'pager', params: {dataSize: 30, pageSize: 5} }"></div>
+    <grid params="dataLoader: dataLoader"></grid>
     <pager params="dataSize: 30, pageSize: 5"></pager>
     <!-- build:js -->
       <script src="app/require.config.js"></script>

@@ -1,18 +1,18 @@
-define(['jquery', 'knockout', './router', 'bootstrap', 'knockout-projections'], function($, ko, router) {
+define(['jquery', 'knockout', 'components/pager/pager', 'components/grid/grid', 'bootstrap', 'knockout-projections'], function($, ko, Pager, Grid) {
 
-  // Components can be packaged as AMD modules, such as the following:
-  ko.components.register('nav-bar', { require: 'components/nav-bar/nav-bar' });
-  ko.components.register('home-page', { require: 'components/home-page/home' });
-  ko.components.register('grid', { require: 'components/grid/grid' });
-  ko.components.register('pager', { require: 'components/pager/pager' });
+  ko.components.register('pager', { viewModel: Pager.viewModel, template: Pager.template });
+  ko.components.register('grid', { viewModel: Grid.viewModel, template: Grid.template });
 
-  // ... or for template-only components, you can just point to a .html file directly:
-  ko.components.register('about-page', {
-    template: { require: 'text!components/about-page/about.html' }
-  });
+  var vm = {
+    dataLoader: function(columns, pager, data) {
+      data([
+        {id: 1, name: 'Luis'},
+        {id: 2, name: 'Luis H'},
+      ])
+    }  
+  }
 
-  // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
+  ko.applyBindings(vm);
 
-  // Start the application
-  ko.applyBindings({ route: router.currentRoute });
+
 });

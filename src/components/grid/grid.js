@@ -18,6 +18,7 @@ define(["knockout", "text!./grid.html"], function(ko, gridTemplate) {
       self.rows.removeAll();
       self.rows(rows);
     };
+    this.pager = params.pager;
     ko.computed(function() {
       this.allSelected(false);
       params.dataLoader(this.columns, this.pager, this.initializeRows);

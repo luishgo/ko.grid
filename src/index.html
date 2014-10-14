@@ -10,8 +10,8 @@
     <!-- endbuild -->
   </head>
   <body>
-    <grid params="dataLoader: dataLoader"></grid>
-    <pager params="dataSize: 30, pageSize: 5"></pager>
+    <grid params="dataLoader: dataLoader, pager: pager"></grid>
+    <pager params="dataSize: pager.dataSize, pageSize: pager.pageSize, currentPageIndex: pager.currentPageIndex"></pager>
     <!-- build:js -->
       <script src="app/require.config.js"></script>
       <script data-main="app/startup" src="bower_modules/requirejs/require.js"></script>

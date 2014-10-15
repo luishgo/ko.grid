@@ -10,17 +10,43 @@
     <!-- endbuild -->
   </head>
   <body>
-    <filter params="pager: pager, 
-          columns: columns, 
-          includeToolbarRefresh: true,
-          includeToolbarDownload: false,
-          includeToolbarFilter: true,
-"></filter>
-    <grid params="dataLoader: dataLoader, pager: pager, columns: columns"></grid>
-    <pager params="dataSize: pager.dataSize, pageSize: pager.pageSize, currentPageIndex: pager.currentPageIndex"></pager>
+    <full-grid params="pager: pager, columns: columns, dataLoader: dataLoader, actions: actions, idColumn: idColumn"></full-grid>
     <!-- build:js -->
-      <script src="app/require.config.js"></script>
-      <script data-main="app/startup" src="bower_modules/requirejs/require.js"></script>
+    <script src="app/require.config.js"></script>
+    <script data-main="app/startup" src="bower_modules/requirejs/require.js"></script>
     <!-- endbuild -->    
+    <script type="text/html" id="display_link_column">
+      <div style="white-space:nowrap;"><a data-bind="attr: {href: 'javascript: parent.masterViewModel.abasViewModel.addAba(\'idObjeto'+$parentContext.$parent.id+'\',\''+$parentContext.$parent.numeroFormatado+'\', \'/e-processo/'+$parentContext.$parent.id+'/detalhar.action\', true, parent.masterViewModel.abasViewModel.abaSelecionada().extra);'}, text: $data"></a></div>
+    </script>
+
+    <script type="text/html" id="acoesLinhaGrid">
+      <a data-bind="attr: {href: 'javascript: abreRelacionados('+$data.id+');'}"><button type="button" class="btn btn-mini modal-ajax" title="Visualizar Objetos Relacionados"><i class="icon-th-list"></i></button></a>
+
+      <a data-bind="attr: {href: 'http://des.tce.rs.gov.br/mavenflip/pub/tce/interno/?numero=' + $data.numero}" target="_blank"><button type="button" class="btn btn-mini" title="Visualizar Processo"><i class="icon-eye-open"></i></button></a>
+      <!-- ko if:  verificaArquivoInstrucao($data.idArquivoInstrucao, $data.idVisaoArquivoInstrucao) -->
+        <a data-bind="attr: {href: 'javascript: abreVisualizacao('+$data.id+' ,'+$data.idArquivoInstrucao+');'}"><button type="button" class="btn btn-mini modal-ajax" title="Visualizar Arquivo Instrução"><i class="icon-file"></i></button></a>
+      <!-- /ko -->
+    </script>    
+    <script>
+      function verificaArquivoInstrucao(idArquivo, idVisao) {
+        return idArquivo != null && idVisao == $('#visaoUsuario').val();
+      }
+
+      function abreVisualizacao(idObjeto, idArquivo) {
+        $("#visualizar-arquivo").attr('href','arquivo/' +idObjeto+ '/'+idArquivo+'/visualizar.action');
+        $('#modal-visualizar-arquivo').on('hidden', function() {
+            $(this).removeData('modal');
+        });
+        $("#visualizar-arquivo").click();
+      }
+      
+      function abreRelacionados(idObjeto) {
+        $("#visualizar-objetos-relacionados").attr('href', idObjeto+'/visualizar-objetos-relacionados.action');
+        $('#modal-visualizar-objetos-relacionados').on('hidden', function() {
+            $(this).removeData('modal');
+        });
+        $("#visualizar-objetos-relacionados").click();
+      }  
+    </script>    
   </body>
 </html>

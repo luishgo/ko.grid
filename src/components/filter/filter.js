@@ -25,13 +25,13 @@ define(["knockout", "text!./filter.html"], function(ko, filterTemplate) {
 
     this.columns = params.columns;
     this.filteredColumns = ko.computed(function() {
-      return ko.utils.arrayFilter(self.columns, function(column) {
+      return ko.utils.arrayFilter(self.columns(), function(column) {
         return column.filterCondition() != null;
       });
     });
 
     this.notFilteredColumns = ko.computed(function() {
-      return ko.utils.arrayFilter(self.columns, function(column) {
+      return ko.utils.arrayFilter(self.columns(), function(column) {
           return column.filterCondition() == null && column.filterable() == true;
         });
     });
@@ -85,11 +85,13 @@ define(["knockout", "text!./filter.html"], function(ko, filterTemplate) {
       column().filterCondition(condition);
       self.qtyFilterConditions(self.qtyFilterConditions()+1);
       $('input#toolbar-filter-value').val('');
+      self.pager.currentPageIndex(0);
     };
 
     this.removeCondition = function(column){
       column.filterCondition(null);
       self.qtyFilterConditions(self.qtyFilterConditions()-1);
+      self.pager.currentPageIndex(0);
     };
 
     this.removeAllConditions = function(columns){

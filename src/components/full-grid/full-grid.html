@@ -1,0 +1,39 @@
+<filter params="pager: pager, 
+                columns: columns,
+                idColumn: 'id',
+                includeToolbarRefresh: true,
+                includeToolbarDownload: false,
+                includeToolbarFilter: true">
+</filter>
+<grid params="dataLoader: dataLoader, 
+              pager: pager, 
+              columns: columns, 
+              idColumn: idColumn,
+              actions: actions,
+              includeCheckboxes: true">
+</grid>
+<pager params="dataSize: pager.dataSize, 
+               filteredDataSize: pager.filteredDataSize,
+               pageSize: pager.pageSize, 
+               currentPageIndex: pager.currentPageIndex">
+</pager>
+
+<script type="text/html" id="ko_grid_display_column">
+  <!-- ko text: $data --><!-- /ko -->
+</script>
+
+<script type="text/html" id="as_date">
+  <!-- ko text: $parent.toDate($data, false) --><!-- /ko -->
+</script>
+
+<script type="text/html" id="as_date_time">
+  <!-- ko text: $parent.toDate($data, true) --><!-- /ko -->
+</script>
+
+<script type="text/html" id="as_cpf">
+  <!-- ko text: $data --><!-- /ko -->
+</script>
+
+<script type="text/html" id="as_processo">
+  <!-- ko text: $data --><!-- /ko -->
+</script>

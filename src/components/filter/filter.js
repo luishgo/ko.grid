@@ -36,9 +36,14 @@ define(["knockout", "text!./filter.html"], function(ko, filterTemplate) {
         });
     });
 
-    this.availablePageSizes = ko.observableArray([15, 25, 50, 100, 500, 'Tudo']);
-
     this.pager = params.pager;
+
+    this.update = function() {
+      params.forceUpdate(true);
+      params.forceUpdate(false);
+    }
+
+    this.availablePageSizes = ko.observableArray([15, 25, 50, 100, 500, 'Tudo']);
 
     this.selectedPageSize = this.pager.pageSize == 10000 ? ko.observableArray(['Tudo']) : ko.observableArray([this.pager.pageSize.toString()]);
 

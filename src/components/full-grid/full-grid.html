@@ -3,14 +3,16 @@
                 idColumn: 'id',
                 includeToolbarRefresh: true,
                 includeToolbarDownload: false,
-                includeToolbarFilter: true">
+                includeToolbarFilter: true,
+                forceUpdate: forceUpdate">
 </filter>
 <grid params="dataLoader: dataLoader, 
               pager: pager, 
               columns: columns, 
               idColumn: idColumn,
               actions: actions,
-              includeCheckboxes: true">
+              includeCheckboxes: true,
+              forceUpdate: forceUpdate">
 </grid>
 <pager params="dataSize: pager.dataSize, 
                filteredDataSize: pager.filteredDataSize,

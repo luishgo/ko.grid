@@ -35,14 +35,14 @@ define(["knockout", "text!./grid.html"], function(ko, template) {
       self.rows.removeAll();
       self.rows(rows);
     };
-    //TODO: Não usado ainda
-    this.forceUpdate = ko.observable();
-    this.update = function() {
-      self.forceUpdate(true);
-    };
+
+    this.forceUpdate = params.forceUpdate;
 
     ko.computed(function() {
       this.allSelected(false);
+      
+      this.forceUpdate();
+
       params.dataLoader(this.columns, this.pager, this.initializeRows);
     }, this).extend({ throttle: 1 });
   }

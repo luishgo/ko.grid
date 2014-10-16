@@ -11,6 +11,7 @@ define(["knockout", "text!./full-grid.html", 'components/full-grid/columns'], fu
     this.columns = Column.createColumns({columns: params.columns});
     this.idColumn = new Column({name: params.idColumn});
     this.actions = params.actions;
+    this.forceUpdate = ko.observable();
   }
 
   return {viewModel: FullGrid, template: template}

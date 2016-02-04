@@ -1,23 +1,23 @@
 <div class="pagination pagination-centered">
     <ul id="ul-paginacao">
-        <li data-bind="css: {disabled: currentPageIndex() == 0}">
-            <a href="#" data-bind="click: function() { currentPageIndex() != 0 ? currentPageIndex(currentPageIndex() - 1) : 0; }">Anterior</a>
+        <li data-bind="css: {disabled: currentPageIndex() <= 0}">
+            <a href="#" data-bind="click: anterior" accesskey="n">A<u>n</u>terior</a>
         </li>
         <!-- ko foreach: ko.utils.range(0, maxPageIndex) -->
         <li class="li-pagina li-visible" data-bind="css: { active: $data == $parent.currentPageIndex() }">
-            <a href="#" data-bind="text: $data + 1, click: function() { $parent.currentPageIndex($data) }"></a>
+            <a href="#" data-bind="text: $data + 1, click: function() { $parent.goToPage($data) }"></a>
         </li>
-        <!-- /ko -->        
-        <li data-bind="css: {disabled: currentPageIndex() == maxPageIndex()}">
-            <a href="#" data-bind="click: function() { currentPageIndex() != maxPageIndex() ? currentPageIndex(currentPageIndex() + 1) : 0; }">Próximo</a>
+        <!-- /ko -->
+        <li data-bind="css: {disabled: currentPageIndex() >= maxPageIndex()}">
+            <a href="#" data-bind="click: proximo" accesskey="m">Próxi<u>m</u>o</a>
         </li>
     </ul>
     <div style="float: right; margin-right: 5px;">
         Mostrando de 
-        <span data-bind="text: minRows"/> a 
-        <span data-bind="text: maxRows" />
+        <span data-bind="text: minRows"></span> a 
+        <span data-bind="text: maxRows"></span>
         <span data-bind="visible: filteredDataSize() != dataSize() , text: ' de ' + filteredDataSize() + ' filtrando '" ></span>
          de 
-        <span id="total-registros" data-bind="text: dataSize()" /><span> registros</span>
+        <span id="total-registros" data-bind="text: dataSize()"></span><span> registros</span>
     </div>
 </div>

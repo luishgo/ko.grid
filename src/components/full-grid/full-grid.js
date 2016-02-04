@@ -1,18 +1,27 @@
-define(["knockout", "text!./full-grid.html", 'components/full-grid/columns'], function(ko, template, Column) {
+define(["knockout", "text!./full-grid.html", 'components/pager/pager',
+    'components/grid/grid', 'components/toolbar/toolbar'], function(ko, template, Pager, Grid, Toolbar) {
 
-  var FullGrid = function(params) {
-    this.pager = {
-      currentPageIndex: ko.observable(0),
-      dataSize: ko.observable(params.pager.dataSize || 0),
-      pageSize: ko.observable(params.pager.pageSize || 0),
-      filteredDataSize: ko.observable(params.pager.dataSize|| 0)
+    "use strict";
+    ko.components.register('pager', Pager);
+    ko.components.register('grid', Grid);
+    ko.components.register('toolbar', Toolbar);
+
+    var FullGrid = function(params) {
+        var self = this;
+
+        this.pager = params.pager;
+        this.pager.ready = ko.observable(false);
+
+        this.toolbar = params.toolbar;
+        this.toolbar.ready = ko.observable(false);
+        
+        this.grid = params.grid;
+        this.grid.ready = ko.observable(false);
+        this.grid.allReady = ko.computed(function() {
+            return self.pager.ready() && self.grid.ready() && self.toolbar.ready();
+        });
+
     };
-    this.dataLoader = params.dataLoader;
-    this.columns = Column.createColumns({columns: params.columns});
-    this.idColumn = new Column({name: params.idColumn});
-    this.actions = params.actions;
-    this.forceUpdate = ko.observable();
-  }
 
-  return {viewModel: FullGrid, template: template}
+    return {viewModel: FullGrid, template: template};
 });

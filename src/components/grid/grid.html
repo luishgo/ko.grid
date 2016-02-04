@@ -8,7 +8,7 @@
       <th></th>
     <!--/ko--> 
     <!--ko foreach: columns -->
-      <th data-bind="click: changeOrder, visible: visible, attr: {width: width, style: style}">
+      <th data-bind="click: changeOrder, visible: visible, style: style">
         <!--ko text: displayName --><!--/ko-->
         <!--ko if: isOrdered() -->
           <i data-bind="css: { 'icon-arrow-down': orientation() === 'asc', 'icon-arrow-up': orientation() === 'desc'}"></i>
@@ -32,7 +32,7 @@
       <td><input type="radio" data-bind="checked: selected, value: $parent.idColumn.displayFunction($data), attr: {name: 'idObjeto'}"></td>
     <!--/ko-->
     <!-- ko foreach: $parent.columns -->
-      <td data-bind="visible: visible, attr: {width: width, style: style}">
+      <td data-bind="visible: visible, style: style">
       <!-- ko template: {name: displayTemplate, data: displayFunction($parent)} --><!-- /ko -->
       </td>
     <!-- /ko -->

@@ -18,21 +18,27 @@
       </button>
     </div>
     <div data-bind="if: includeToolbarPageSize, event: {change: pageSizeChange}" style="float: left; margin-right: 5px;">
-      <select data-bind="options: availablePageSizes, selectedOptions: selectedPageSize" style="width: 80px;  margin: 0px;"></select> registros por página
+      <select data-bind="options: availablePageSizes, selectedOptions: selectedPageSize"
+              style="width: 80px;  margin: 0px;"></select> registros por página
     </div>
   </div>
   <!--ko if: configurationPanel -->
   <p></p>
   <div style="width: 100%;">
-    <fildset>
+    <fieldset>
       <legend>Filtro</legend>
-      <select id="toolbar-filter-column" data-bind="click: filterValue, options: notFilteredColumns, optionsText: 'displayName', value: selectedColumn" style="margin: 0px;"></select>
-      <select id="toolbar-filter-operation" data-bind="options: conditionOperations" class="input-small" style="margin: 0px;"></select>
+      <select id="toolbar-filter-column"
+              data-bind="click: filterValue, options: notFilteredColumns, optionsText: 'displayName', value: selectedColumn"
+              style="margin: 0px;"></select>
+      <select id="toolbar-filter-operation" data-bind="options: conditionOperations"
+              class="input-small" style="margin: 0px;"></select>
       <input id="toolbar-filter-value" type="text" style="margin: 0px;">
-      <button id="toolbar-filter-button-add" data-bind="click: function(data, event){addCondition(selectedColumn, $('#toolbar-filter-operation').val(), $('#toolbar-filter-value').val());}" type="button" class="btn btn-mini" title="Adicionar condição">
+      <button id="toolbar-filter-button-add"
+              data-bind="click: function(data, event){addCondition(selectedColumn, $('#toolbar-filter-operation').val(), $('#toolbar-filter-value').val());}"
+              type="button" class="btn btn-mini" title="Adicionar condição">
         <i class="icon-plus"></i>
       </button>
-    </fildset>
+    </fieldset>
     <!--ko if: filteredColumns() != null -->
     <p></p>
     <table width="100%">
@@ -43,7 +49,9 @@
           <td data-bind="text: $data.filterCondition().operation" width="16%"></td>
           <td data-bind="text: $data.filterCondition().value" width="36%"></td>
           <td>
-            <button id="toolbar-filter-button-remove" data-bind="click: function(data, event){$parent.removeCondition($data);}" type="button" class="btn btn-mini" title="Remover condição">
+            <button id="toolbar-filter-button-remove"
+                    data-bind="click: function(data, event){$parent.removeCondition($data);}"
+                    type="button" class="btn btn-mini" title="Remover condição">
               <i class="icon-minus"></i>
             </button>
           </td>

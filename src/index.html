@@ -10,7 +10,7 @@
     <!-- endbuild -->
   </head>
   <body>
-    <full-grid params="pager: pager, columns: columns, dataLoader: dataLoader, actions: actions, idColumn: idColumn"></full-grid>
+    <full-grid params="grid: gridOptions, pager: gridOptions.pagerOptions, toolbar: gridOptions.toolbarOptions"></full-grid>
     <!-- build:js -->
     <script src="app/require.config.js"></script>
     <script data-main="app/startup" src="bower_modules/requirejs/require.js"></script>

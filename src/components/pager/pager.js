@@ -49,7 +49,7 @@ define(["knockout", "text!./pager.html"], function (ko, pagerTemplate) {
         }, this);
 
         this.anterior = function() {
-            if(self.currentPageIndex() === 0) {
+            if(self.currentPageIndex() <= 0) {
                 return;
             }
             var newPageNumber = self.currentPageIndex() - 1;
@@ -63,7 +63,7 @@ define(["knockout", "text!./pager.html"], function (ko, pagerTemplate) {
         };
 
         this.proximo = function() {
-            if(self.currentPageIndex() === self.maxPageIndex()) {
+            if(self.currentPageIndex() >= self.maxPageIndex()) {
                 return;
             }
             var newPageNumber = self.currentPageIndex() + 1;

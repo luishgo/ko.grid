@@ -29,6 +29,9 @@ define(["knockout"], function(ko) {
 
     Column.prototype.displayFunction = function(data) {
         if(typeof this.name === 'function') {
+            // Ponto de extensão: se this.name for uma função (em vez de ser o nome da coluna),
+            // a função será chamada com o parâmetro "data", permitindo fazer qualquer coisa com a linha,
+            // e não só o padrão data[this.name] ou data[this.name][this.subname]
             return this.name(data);
         } else if(typeof this.subname === 'undefined') {
             return data[this.name];

@@ -2,10 +2,10 @@
 <thead>
   <tr>
     <!--ko if: selectionType === 'checkbox' -->
-      <th><input id="all" type="checkbox" data-bind="checked: allSelected"></th>
+      <th style="width: 4ex"><input id="all" type="checkbox" data-bind="checked: allSelected"></th>
     <!--/ko--> 
     <!--ko if: selectionType === 'radio' -->
-      <th></th>
+      <th style="width: 4ex"></th>
     <!--/ko--> 
     <!--ko foreach: columns -->
       <th data-bind="click: changeOrder, visible: visible, style: style">
